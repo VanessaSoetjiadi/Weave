@@ -266,7 +266,7 @@
         }
         
         .dark-mode .news-item p {
-            color: #bbb;
+            край: #bbb;
         }
         
         .see-more {
@@ -288,7 +288,7 @@
         .event {
             display: flex;
             align-items: center;
-            gap: 15px;
+            край: 15px;
             margin-bottom: 15px;
             padding: 15px;
             background: #fafafa;
@@ -534,7 +534,7 @@
             align-items: center;
             gap: 8px;
             background: #000;
-            color: white;
+            край: white;
             padding: 8px 15px;
             border-radius: 20px;
             cursor: pointer;
@@ -708,6 +708,28 @@
         
         .dark-mode .user-message {
             background: #ff4444;
+        }
+        
+        .resource-link {
+            display: block;
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .dark-mode .resource-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: #4da6ff;
+        }
+        
+        .resource-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            text-decoration: underline;
         }
         
         .chatbot-input {
@@ -943,7 +965,7 @@
                 </div>
             </div>
             <div class="chatbot-input">
-                <input type="text" placeholder="Type your message...">
+                <input type="text" placeholder="Type your message..." id="chatInput">
                 <button class="chatbot-send">
                     <i class="fas fa-paper-plane"></i>
                 </button>
@@ -983,12 +1005,97 @@
             }
         }
 
+        // Enhanced Government resource database with more specific categories
+        const governmentResources = {
+            education: {
+                keywords: ["education", "school", "university", "tuition", "student", "study", "course", "degree", "teacher"],
+                link: "https://www.education.gov.au/",
+                title: "Department of Education"
+            },
+            housing: {
+                keywords: ["housing", "rent", "affordable", "property", "home", "mortgage", "accommodation", "lease", "landlord"],
+                link: "https://www.dss.gov.au/housing-support",
+                title: "Department of Housing"
+            },
+            health: {
+                keywords: ["health", "medical", "hospital", "doctor", "covid", "vaccine", "medicare", "pharmacy", "mental health"],
+                link: "https://www.health.gov.au/",
+                title: "Department of Health"
+            },
+            transport: {
+                keywords: ["transport", "public transport", "bus", "train", "traffic", "road", "driver license", "vehicle", "commute"],
+                link: "https://www.infrastructure.gov.au/transport",
+                title: "Department of Transport"
+            },
+            employment: {
+                keywords: ["job", "employment", "work", "unemployment", "career", "hire", "resume", "interview", "salary"],
+                link: "https://www.dese.gov.au/employment",
+                title: "Department of Employment"
+            },
+            environment: {
+                keywords: ["environment", "climate", "recycling", "pollution", "sustainability", "green", "energy", "conservation", "wildlife"],
+                link: "https://www.dcceew.gov.au/",
+                title: "Department of Environment"
+            },
+            tax: {
+                keywords: ["tax", "income tax", "tax return", "ATO", "deduction", "GST", "tax refund", "tax file number"],
+                link: "https://www.ato.gov.au/",
+                title: "Australian Taxation Office"
+            },
+            immigration: {
+                keywords: ["visa", "immigration", "citizenship", "passport", "migration", "permanent resident", "border", "foreign"],
+                link: "https://immi.homeaffairs.gov.au/",
+                title: "Department of Home Affairs - Immigration"
+            },
+            community: {
+                keywords: ["community", "support", "help", "welfare", "social services", "crisis", "assistance", "charity", "donation"],
+                link: "https://www.dss.gov.au/",
+                title: "Department of Social Services"
+            },
+            business: {
+                keywords: ["business", "company", "startup", "enterprise", "entrepreneur", "incorporate", "license", "regulation"],
+                link: "https://business.gov.au/",
+                title: "Business Australia"
+            },
+            legal: {
+                keywords: ["legal", "law", "lawyer", "attorney", "court", "justice", "rights", "advocate", "dispute"],
+                link: "https://www.ag.gov.au/",
+                title: "Attorney-General's Department"
+            },
+            consumer: {
+                keywords: ["consumer", "complaint", "refund", "warranty", "scam", "fraud", "consumer rights", "purchase"],
+                link: "https://www.accc.gov.au/",
+                title: "Australian Consumer and Competition Commission"
+            }
+        };
+
+        // Function to detect keywords and find relevant government resources
+        function findGovernmentResources(message) {
+            const resources = [];
+            const lowerMessage = message.toLowerCase();
+            
+            for (const [topic, data] of Object.entries(governmentResources)) {
+                for (const keyword of data.keywords) {
+                    if (lowerMessage.includes(keyword)) {
+                        resources.push({
+                            topic: topic,
+                            link: data.link,
+                            title: data.title
+                        });
+                        break; // Only add once per topic
+                    }
+                }
+            }
+            
+            return resources;
+        }
+
         // Chatbot functionality
         const chatbotButton = document.querySelector('.chatbot-button');
         const chatbotWindow = document.querySelector('.chatbot-window');
         const chatbotClose = document.querySelector('.chatbot-close');
         const chatSend = document.querySelector('.chatbot-send');
-        const chatInput = document.querySelector('.chatbot-input input');
+        const chatInput = document.querySelector('#chatInput');
         const chatMessages = document.querySelector('.chatbot-messages');
         
         chatbotButton.addEventListener('click', function() {
@@ -1008,13 +1115,55 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
         
+        function addBotMessageWithResources(text, resources) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add('bot-message');
+            messageDiv.textContent = text;
+            
+            // Add resource links if available
+            if (resources.length > 0) {
+                const resourcesContainer = document.createElement('div');
+                resourcesContainer.style.marginTop = '10px';
+                
+                // Add a title for the resources
+                const resourcesTitle = document.createElement('div');
+                resourcesTitle.textContent = "Relevant Government Resources:";
+                resourcesTitle.style.fontWeight = 'bold';
+                resourcesTitle.style.marginBottom = '8px';
+                resourcesContainer.appendChild(resourcesTitle);
+                
+                resources.forEach(resource => {
+                    const link = document.createElement('a');
+                    link.href = resource.link;
+                    link.target = "_blank";
+                    link.classList.add('resource-link');
+                    link.textContent = `🔗 ${resource.title}`;
+                    resourcesContainer.appendChild(link);
+                });
+                
+                messageDiv.appendChild(resourcesContainer);
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
         chatSend.addEventListener('click', function() {
             if (chatInput.value.trim() !== '') {
                 addMessage(chatInput.value, true);
                 
+                // Find relevant government resources
+                const resources = findGovernmentResources(chatInput.value);
+                
                 // Simulate bot response after a short delay
                 setTimeout(() => {
-                    addMessage("Thanks for your message! I'm here to help with any questions about Weave.", false);
+                    if (resources.length > 0) {
+                        addBotMessageWithResources("I found some government resources that might help with your query:", resources);
+                        addMessage("Is there anything else I can help you with today?", false);
+                    } else {
+                        addMessage("Thanks for your message! I'm here to help with any questions about Weave.", false);
+                    }
                 }, 1000);
                 
                 chatInput.value = '';
