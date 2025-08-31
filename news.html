@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Development Plans for Adelaide Central Market - WeaveSA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+        /* Namespaced styles to prevent conflicts with main page */
+        .weave-discussion * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .weave-discussion {
+            background: #f5f5f5;
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            padding-bottom: 100px;
+        }
+
+        .weave-discussion.weave-dark-mode {
+            background: #1a1a1a;
+            color: #f0f0f0;
+        }
+
+        .weave-discussion .weave-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .weave-discussion .weave-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-header {
+            background: #2a2a2a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .weave-discussion .weave-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Logo styling - Replace with your logo */
+        .weave-logo-img {
+            height: 40px; /* Adjust based on your logo's dimensions */
+            width: auto;
+        }
+
+        .weave-discussion .weave-back-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-back-button {
+            background: #3a3a3a;
+            color: #fff;
+        }
+
+        .weave-discussion .weave-back-button:hover {
+            background: #e0e0e0;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-back-button:hover {
+            background: #4a4a4a;
+        }
+
+        .weave-discussion .weave-search-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .weave-discussion .weave-theme-toggle {
+            background: #000;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-theme-toggle {
+            background: #3a3a3a;
+        }
+
+        .weave-discussion .weave-theme-toggle:hover {
+            background: #ff4444;
+            transform: scale(1.05);
+        }
+
+        .weave-discussion .weave-profile-button {
+            background: #000;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-profile-button {
+            background: #3a3a3a;
+        }
+
+        .weave-discussion .weave-profile-button:hover {
+            background: #ff4444;
+            transform: scale(1.05);
+        }
+
+        /* News Article Styles */
+        .weave-discussion .weave-news-article {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-news-article {
+            background: #2a2a2a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .weave-discussion .weave-news-hero {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .weave-discussion .weave-news-hero-content {
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 30px;
+            width: 100%;
+        }
+
+        .weave-discussion .weave-news-hero-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .weave-discussion .weave-news-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            flex-wrap: wrap;
+        }
+
+        .weave-discussion .weave-news-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .weave-discussion .weave-news-content {
+            padding: 30px;
+        }
+
+        .weave-discussion .weave-news-content p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-news-content p {
+            color: #ddd;
+        }
+
+        .weave-discussion .weave-news-content h2 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: #000;
+            padding-left: 10px;
+            border-left: 4px solid #ff4444;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-news-content h2 {
+            color: #fff;
+        }
+
+        .weave-discussion .weave-news-content blockquote {
+            border-left: 4px solid #ff4444;
+            padding-left: 20px;
+            margin: 25px 0;
+            font-style: italic;
+            color: #666;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-news-content blockquote {
+            color: #bbb;
+        }
+
+        .weave-discussion .weave-news-actions {
+            display: flex;
+            gap: 15px;
+            padding: 0 30px 30px;
+            flex-wrap: wrap;
+        }
+
+        .weave-discussion .weave-news-action-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-news-action-button {
+            background: #3a3a3a;
+            color: #fff;
+        }
+
+        .weave-discussion .weave-news-action-button:hover {
+            background: #e0e0e0;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-news-action-button:hover {
+            background: #4a4a3a;
+        }
+
+        .weave-discussion .weave-news-comments {
+            padding: 30px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-news-comments {
+            border-top: 1px solid #3a3a3a;
+        }
+
+        .weave-discussion .weave-news-comments h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-news-comments h2 {
+            color: #fff;
+        }
+
+        .weave-discussion .weave-comment {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-comment {
+            border-bottom: 1px solid #3a3a3a;
+        }
+
+        .weave-discussion .weave-comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-comment-avatar {
+            background: #ff4444;
+        }
+
+        .weave-discussion .weave-comment-content {
+            flex: 1;
+        }
+
+        .weave-discussion .weave-comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .weave-discussion .weave-comment-user {
+            font-weight: bold;
+            color: #000;
+            font-size: 1rem;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-comment-user {
+            color: #fff;
+        }
+
+        .weave-discussion .weave-comment-time {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-comment-time {
+            color: #bbb;
+        }
+
+        .weave-discussion .weave-comment-text {
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-comment-text {
+            color: #ddd;
+        }
+
+        .weave-discussion .weave-comment-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .weave-discussion .weave-comment-action {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 0.8rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-comment-action {
+            color: #bbb;
+        }
+
+        .weave-discussion .weave-comment-action:hover {
+            color: #ff4444;
+            background: #f0f0f0;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-comment-action:hover {
+            background: #3a3a3a;
+        }
+
+        .weave-discussion .weave-comment-form {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-comment-form {
+            background: #3a3a3a;
+            border-color: #555;
+        }
+
+        .weave-discussion .weave-comment-form h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-comment-form h3 {
+            color: #fff;
+        }
+
+        .weave-discussion .weave-comment-form textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 100px;
+            margin-bottom: 15px;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-comment-form textarea {
+            background: #3a3a3a;
+            color: white;
+            border-color: #555;
+        }
+
+        .weave-discussion .weave-reply-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-reply-button {
+            background: #ff4444;
+        }
+
+        .weave-discussion .weave-reply-button:hover {
+            background: #ff4444;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .weave-discussion .weave-footer {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-footer {
+            color: #bbb;
+        }
+
+        /* Google Translate Styles */
+        .weave-discussion .goog-te-combo {
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            background: white;
+            color: #333;
+            margin-left: 10px;
+        }
+
+        .weave-discussion.weave-dark-mode .goog-te-combo {
+            background: #3a3a3a;
+            color: white;
+            border-color: #555;
+        }
+
+        .weave-discussion .goog-te-gadget {
+            color: transparent !important;
+        }
+
+        .weave-discussion .goog-te-gadget .goog-te-combo {
+            margin: 4px 0;
+        }
+
+        .weave-discussion .goog-te-banner-frame {
+            display: none !important;
+        }
+
+        .weave-discussion .goog-te-menu-value {
+            display: flex;
+            align-items: center;
+        }
+
+        .weave-discussion .goog-te-menu-value span {
+            color: #333;
+        }
+
+        .weave-discussion.weave-dark-mode .goog-te-menu-value span {
+            color: white;
+        }
+
+        .weave-discussion #google_translate_element {
+            display: flex;
+            align-items: center;
+        }
+
+        .weave-discussion .skiptranslate iframe {
+            display: none !important;
+        }
+
+        /* Mobile translate dropdown */
+        .weave-discussion .weave-mobile-translate {
+            display: none;
+            position: relative;
+        }
+        
+        .weave-discussion .weave-translate-dropdown {
+            position: relative;
+        }
+
+        .weave-discussion .weave-translate-options {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background: #f0f0f0;
+            min-width: 160px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-translate-options {
+            background: #3a3a3a;
+            border-color: #555;
+        }
+
+        .weave-discussion .weave-translate-options a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-translate-options a {
+            color: #fff;
+        }
+
+        .weave-discussion .weave-translate-options a:hover {
+            background: #e0e0e0;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-translate-options a:hover {
+            background: #4a4a4a;
+        }
+
+        .weave-discussion .weave-translate-toggle {
+            background: #000;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .weave-discussion.weave-dark-mode .weave-translate-toggle {
+            background: #3a3a3a;
+        }
+
+        .weave-discussion .weave-translate-toggle:hover {
+            background: #ff4444;
+            transform: scale(1.05);
+        }
+
+        .show {
+            display: block !important;
+        }
+
+        /* Emoji styles */
+        .emoji {
+            font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
+            font-size: inherit;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .weave-discussion .weave-header {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .weave-discussion .weave-search-container {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .weave-discussion .weave-news-hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .weave-discussion .weave-news-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .weave-discussion .weave-news-content {
+                padding: 20px;
+            }
+            
+            .weave-discussion .weave-news-actions {
+                padding: 0 20px 20px;
+            }
+            
+            .weave-discussion .weave-news-comments {
+                padding: 20px;
+            }
+            
+            .weave-discussion .weave-comment-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            /* Show mobile translate button on small screens */
+            .weave-discussion .weave-mobile-translate {
+                display: block;
+            }
+            
+            /* Hide desktop translate on small screens */
+            .weave-discussion #google_translate_element {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="weave-discussion">
+    <div class="weave-container">
+        <header class="weave-header">
+            <div class="weave-logo-container">
+                <!-- Replace the src with your actual logo file path -->
+                <a href="index.html">
+                    <img src="Weave logo.png" alt="WeaveSA" class="weave-logo-img">
+                </a>
+                <div class="weave-back-button" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </div>
+            </div>
+            <div class="weave-search-container">
+                <div id="google_translate_element"></div>
+                <div class="weave-mobile-translate">
+                    <div class="weave-translate-dropdown">
+                        <div class="weave-translate-toggle" onclick="toggleTranslate()">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div id="translateOptions" class="weave-translate-options">
+                            <a href="#" onclick="changeLanguage('en')">English</a>
+                            <a href="#" onclick="changeLanguage('es')">Español</a>
+                            <a href="#" onclick="changeLanguage('fr')">Français</a>
+                            <a href="#" onclick="changeLanguage('de')">Deutsch</a>
+                            <a href="#" onclick="changeLanguage('zh')">中文</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="weave-theme-toggle" onclick="toggleDarkMode()">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <a href="profile.html" class="weave-profile-button">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </header>
+        
+        <article class="weave-news-article">
+            <div class="weave-news-hero" style="background-image: url('https://picsum.photos/1000/400?news=1')">
+                <div class="weave-news-hero-content">
+                    <h1>New Development Plans for Adelaide Central Market</h1>
+                    <div class="weave-news-meta">
+                        <span><i class="far fa-user"></i> By Adelaide News</span>
+                        <span><i class="far fa-clock"></i> Posted 2 days ago</span>
+                        <span><i class="far fa-eye"></i> 3.2k views</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="weave-news-content">
+                <p>The Adelaide City Council has approved a major redevelopment project for the historic Adelaide Central Market area. The $400 million project aims to modernize the facilities while preserving the market's historic character.</p>
+                
+                <h2>Project Details</h2>
+                <p>The redevelopment will include new retail spaces, improved accessibility, and expanded dining areas. The project is expected to create over 500 jobs during construction and 300 permanent positions once completed.</p>
+                
+                <blockquote>
+                    "This redevelopment will ensure that the Adelaide Central Market remains a vibrant hub for our city while preserving its unique character and history." - Lord Mayor Jane Smith
+                </blockquote>
+                
+                <p>Construction is scheduled to begin in early 2024 and is expected to be completed in phases over three years. During construction, the market will remain open with minimal disruption to traders and visitors.</p>
+                
+                <h2>Community Response</h2>
+                <p>Local traders have expressed mixed reactions to the plans. While many welcome the modernization and potential for increased foot traffic, others are concerned about disruption during construction and potential rent increases.</p>
+                
+                <p>The council has established a support program for affected traders and has promised to work closely with them throughout the development process.</p>
+            </div>
+            
+            <div class="weave-news-actions">
+                <button class="weave-news-action-button" id="likeButton">
+                    <i class="far fa-thumbs-up"></i> Like (243)
+                </button>
+                <button class="weave-news-action-button" id="shareButton">
+                    <i class="far fa-share-square"></i> Share
+                </button>
+                <button class="weave-news-action-button" id="saveButton">
+                    <i class="far fa-bookmark"></i> Save
+                </button>
+            </div>
+            
+            <div class="weave-news-comments">
+                <h2>Comments (46)</h2>
+                
+                <div class="weave-comment">
+                    <div class="weave-comment-avatar">M</div>
+                    <div class="weave-comment-content">
+                        <div class="weave-comment-header">
+                            <span class="weave-comment-user">MarketLover</span>
+                            <span class="weave-comment-time">1 day ago</span>
+                        </div>
+                        <p class="weave-comment-text">Finally! The market desperately needs better accessibility. Hopefully they'll add more elevators and ramps for wheelchair users.</p>
+                        <div class="weave-comment-actions">
+                            <button class="weave-comment-action" onclick="likeComment(this)">Like (15)</button>
+                            <button class="weave-comment-action" onclick="replyToComment()">Reply</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="weave-comment">
+                    <div class="weave-comment-avatar">T</div>
+                    <div class="weave-comment-content">
+                        <div class="weave-comment-header">
+                            <span class="weave-comment-user">TraderTom</span>
+                            <span class="weave-comment-time">20 hours ago</span>
+                        </div>
+                        <p class="weave-comment-text">As a longtime trader, I'm worried about the disruption during construction. Many small businesses might not survive three years of construction work.</p>
+                        <div class="weave-comment-actions">
+                            <button class="weave-comment-action" onclick="likeComment(this)">Like (23)</button>
+                            <button class="weave-comment-action" onclick="replyToComment()">Reply</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="weave-comment-form">
+                    <h3>Add a comment</h3>
+                    <textarea id="commentText" placeholder="Share your thoughts..."></textarea>
+                    <button class="weave-reply-button" id="postComment">Post Comment</button>
+                </div>
+            </div>
+        </article>
+        
+        <footer class="weave-footer">
+            <p>© 2023 WeaveSA. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const discussionElement = document.querySelector('.weave-discussion');
+            discussionElement.classList.toggle('weave-dark-mode');
+            const icon = document.querySelector('.weave-theme-toggle i');
+            if (discussionElement.classList.contains('weave-dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('weaveDarkMode', 'enabled');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('weaveDarkMode', 'disabled');
+            }
+        }
+
+        // Back button functionality
+        function goBack() {
+            window.history.back();
+        }
+
+        // Function to toggle translation options
+        function toggleTranslate() {
+            document.getElementById("translateOptions").classList.toggle("show");
+        }
+
+        // Function to change language
+        function changeLanguage(lang) {
+            // Change Google Translate language
+            if (typeof google !== 'undefined' && google.translate && google.translate.TranslateElement) {
+                var selectField = document.querySelector("#google_translate_element select");
+                if (selectField) {
+                    for (var i = 0; i < selectField.options.length; i++) {
+                        if (selectField.options[i].value.indexOf(lang) > -1) {
+                            selectField.selectedIndex = i;
+                            selectField.dispatchEvent(new Event('change'));
+                            break;
+                        }
+                    }
+                }
+            }
+            document.getElementById("translateOptions").classList.remove("show");
+        }
+
+        // Close the translation dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.weave-translate-toggle')) {
+                var dropdowns = document.getElementsByClassName("weave-translate-options");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Google Translate API Integration
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,es,fr,de,zh-CN,ja,ko,ar,hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+            
+            // Add a custom label to the translate dropdown
+            const translateSelect = document.querySelector('.goog-te-combo');
+            if (translateSelect) {
+                translateSelect.innerHTML = '<option value="">Select Language</option>' + translateSelect.innerHTML;
+            }
+            
+            // Customize the Google Translate dropdown after it loads
+            setTimeout(function() {
+                var iframe = document.querySelector('.goog-te-menu-frame');
+                if (iframe) {
+                    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    var style = document.createElement('style');
+                    style.innerHTML = `
+                        body {
+                            background: ${getComputedStyle(document.body).getPropertyValue('background-color')} !important;
+                            color: ${getComputedStyle(document.body).getPropertyValue('color')} !important;
+                        }
+                        .goog-te-menu2-item div, .goog-te-menu2-item:link {
+                            color: ${getComputedStyle(document.body).getPropertyValue('color')} !important;
+                        }
+                        .goog-te-menu2-item:hover {
+                            background: #f0f0f0 !important;
+                        }
+                    `;
+                    innerDoc.head.appendChild(style);
+                }
+            }, 1000);
+        }
+
+        // Like functionality for comments
+        function likeComment(button) {
+            const count = parseInt(button.textContent.match(/\d+/)[0] || 0);
+            button.textContent = `Like (${count + 1})`;
+            button.style.color = '#ff4444';
+        }
+
+        // Reply to comment functionality
+        function replyToComment() {
+            const commentText = document.getElementById('commentText');
+            commentText.focus();
+            commentText.value = "@username "; // This would be dynamic in a real app
+        }
+
+        // News action buttons functionality
+        document.getElementById('likeButton').addEventListener('click', function() {
+            const count = parseInt(this.textContent.match(/\d+/)[0]);
+            this.innerHTML = `<i class="far fa-thumbs-up"></i> Like (${count + 1})`;
+        });
+
+        document.getElementById('shareButton').addEventListener('click', function() {
+            alert('Share this article on social media');
+        });
+
+        document.getElementById('saveButton').addEventListener('click', function() {
+            this.innerHTML = `<i class="fas fa-bookmark"></i> Saved`;
+        });
+
+        // Comment functionality
+        document.getElementById('postComment').addEventListener('click', function() {
+            const commentText = document.getElementById('commentText');
+            if (commentText.value.trim() !== '') {
+                // Create a new comment element
+                const newComment = document.createElement('div');
+                newComment.className = 'weave-comment';
+                newComment.innerHTML = `
+                    <div class="weave-comment-avatar">U</div>
+                    <div class="weave-comment-content">
+                        <div class="weave-comment-header">
+                            <span class="weave-comment-user">You</span>
+                            <span class="weave-comment-time">Just now</span>
+                        </div>
+                        <p class="weave-comment-text">${commentText.value}</p>
+                        <div class="weave-comment-actions">
+                            <button class="weave-comment-action" onclick="likeComment(this)">Like (0)</button>
+                            <button class="weave-comment-action" onclick="replyToComment()">Reply</button>
+                        </div>
+                    </div>
+                `;
+                
+                // Add the new comment before the comment form
+                const commentsContainer = document.querySelector('.weave-news-comments');
+                commentsContainer.insertBefore(newComment, document.querySelector('.weave-comment-form'));
+                
+                // Clear the textarea
+                commentText.value = '';
+                
+                // Update comment count
+                const commentCount = document.querySelector('.weave-news-comments h2');
+                const currentCount = parseInt(commentCount.textContent.match(/\d+/)[0]);
+                commentCount.textContent = `Comments (${currentCount + 1})`;
+                
+                // Show confirmation
+                alert('Your comment has been posted!');
+            } else {
+                alert('Please write a comment before posting.');
+            }
+        });
+
+        // Initialize when page loads
+        window.onload = function() {
+            // Check for saved dark mode preference
+            if (localStorage.getItem('weaveDarkMode') === 'enabled') {
+                const discussionElement = document.querySelector('.weave-discussion');
+                discussionElement.classList.add('weave-dark-mode');
+                const icon = document.querySelector('.weave-theme-toggle i');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            }
+            
+            // Load Google Translate API if not already loaded
+            if (!document.querySelector('script[src*="translate.google.com"]')) {
+                const script = document.createElement('script');
+                script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+                document.head.appendChild(script);
+            }
+            
+            // Fix for Google Translate banner
+            const checkForBanner = setInterval(function() {
+                const banner = document.querySelector('.goog-te-banner-frame');
+                if (banner) {
+                    banner.style.display = 'none';
+                    clearInterval(checkForBanner);
+                }
+            }, 100);
+        };
+
+        // Hide the Google Translate top banner
+        document.addEventListener('DOMContentLoaded', function() {
+            const style = document.createElement('style');
+            style.textContent = '.goog-te-banner-frame { display: none !important; }';
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

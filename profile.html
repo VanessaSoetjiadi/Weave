@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - WeaveSA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+        :root {
+            --primary-black: #000000;
+            --secondary-black: #212121;
+            --tertiary-black: #424242;
+            --primary-white: #ffffff;
+            --secondary-white: #f5f5f5;
+            --tertiary-white: #eeeeee;
+            --text-dark: #212121;
+            --text-light: #f5f5f5;
+            --border-dark: #424242;
+            --border-light: #e0e0e0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: var(--primary-black);
+            --bg-secondary: var(--secondary-black);
+            --bg-tertiary: var(--tertiary-black);
+            --text-primary: var(--text-light);
+            --text-secondary: #bdbdbd;
+            --border-color: var(--border-dark);
+        }
+
+        body {
+            --bg-primary: var(--primary-white);
+            --bg-secondary: var(--secondary-white);
+            --bg-tertiary: var(--tertiary-white);
+            --text-primary: var(--text-dark);
+            --text-secondary: #757575;
+            --border-color: var(--border-light);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .weave-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .weave-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .weave-logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .weave-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-primary);
+            margin-right: 20px;
+        }
+
+        .weave-back-button {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        .weave-back-button i {
+            margin-right: 5px;
+        }
+
+        .weave-search-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .weave-theme-toggle, .weave-translate-toggle {
+            cursor: pointer;
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .weave-theme-toggle:hover, .weave-translate-toggle:hover {
+            background: var(--bg-tertiary);
+            transform: translateY(-2px);
+        }
+
+        .weave-profile {
+            padding: 40px 0;
+        }
+
+        .weave-profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .weave-profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 40px;
+            margin-right: 20px;
+            position: relative;
+            border: 2px solid var(--border-color);
+        }
+
+        .weave-profile-avatar-edit {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid var(--bg-primary);
+        }
+
+        .weave-profile-info h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .weave-profile-info p {
+            color: var(--text-secondary);
+        }
+
+        .weave-profile-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        .weave-profile-card {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .weave-profile-card h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .weave-form-group {
+            margin-bottom: 20px;
+        }
+
+        .weave-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .weave-form-group input,
+        .weave-form-group textarea,
+        .weave-form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .weave-form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .weave-form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .weave-btn {
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .weave-btn-primary {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .weave-btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .weave-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .weave-profile-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .weave-stat {
+            text-align: center;
+            padding: 15px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .weave-stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .weave-stat-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .weave-footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        /* Google Translate Styles */
+        #google_translate_element {
+            margin-right: 15px;
+        }
+        
+        .goog-te-gadget {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+        
+        .goog-te-gadget-simple {
+            background-color: var(--bg-secondary) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 20px !important;
+            padding: 5px 10px !important;
+            font-size: 14px !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .goog-te-menu-value {
+            color: var(--text-primary) !important;
+        }
+        
+        .goog-te-menu-value span {
+            color: var(--text-primary) !important;
+        }
+        
+        .goog-te-gadget-icon {
+            display: none !important;
+        }
+        
+        /* Language flags */
+        .goog-te-menu-frame {
+            box-shadow: var(--shadow) !important;
+            border-radius: 8px !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        @media (max-width: 768px) {
+            .weave-profile-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .weave-profile-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            #google_translate_element {
+                display: none;
+            }
+            
+            .weave-mobile-translate {
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .weave-profile-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .weave-profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .weave-profile-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+        
+        /* Mobile translate dropdown */
+        .weave-mobile-translate {
+            display: none;
+            position: relative;
+        }
+        
+        .weave-translate-dropdown {
+            position: relative;
+        }
+
+        .weave-translate-options {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background: var(--bg-secondary);
+            min-width: 160px;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .weave-translate-options a {
+            color: var(--text-primary);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .weave-translate-options a:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body class="weave-discussion">
+    <div class="weave-container">
+        <header class="weave-header">
+            <div class="weave-logo-container">
+                <div class="weave-logo">WeaveSA</div>
+                <div class="weave-back-button" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </div>
+            </div>
+            <div class="weave-search-container">
+                <div id="google_translate_element"></div>
+                <div class="weave-mobile-translate">
+                    <div class="weave-translate-dropdown">
+                        <div class="weave-translate-toggle" onclick="toggleTranslate()">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div id="translateOptions" class="weave-translate-options">
+                            <a href="#" onclick="changeLanguage('en')">English</a>
+                            <a href="#" onclick="changeLanguage('es')">Español</a>
+                            <a href="#" onclick="changeLanguage('fr')">Français</a>
+                            <a href="#" onclick="changeLanguage('de')">Deutsch</a>
+                            <a href="#" onclick="changeLanguage('zh')">中文</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="weave-theme-toggle" onclick="toggleDarkMode()">
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+        </header>
+        
+        <div class="weave-profile">
+            <div class="weave-profile-header">
+                <div class="weave-profile-avatar">
+                    <i class="fas fa-user"></i>
+                    <div class="weave-profile-avatar-edit">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <div class="weave-profile-info">
+                    <h1>Edit Your Profile</h1>
+                    <p>Update your personal information and preferences</p>
+                </div>
+            </div>
+            
+            <div class="weave-profile-content">
+                <div class="weave-profile-sidebar">
+                    <div class="weave-profile-card">
+                        <h2>Profile Stats</h2>
+                        <div class="weave-profile-stats">
+                            <div class="weave-stat">
+                                <div class="weave-stat-number">42</div>
+                                <div class="weave-stat-label">Discussions</div>
+                            </div>
+                            <div class="weave-stat">
+                                <div class="weave-stat-number">128</div>
+                                <div class="weave-stat-label">Comments</div>
+                            </div>
+                            <div class="weave-stat">
+                                <div class="weave-stat-number">367</div>
+                                <div class="weave-stat-label">Likes</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="weave-profile-card">
+                        <h2>Account Settings</h2>
+                        <div class="weave-form-group">
+                            <label for="email-notifications">Email Notifications</label>
+                            <select id="email-notifications">
+                                <option value="all">All notifications</option>
+                                <option value="mentions">Only mentions</option>
+                                <option value="none">None</option>
+                            </select>
+                        </div>
+                        <div class="weave-form-group">
+                            <label for="privacy">Profile Privacy</label>
+                            <select id="privacy">
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+                        <button class="weave-btn weave-btn-outline" style="width: 100%;">
+                            Change Password
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="weave-profile-main">
+                    <div class="weave-profile-card">
+                        <h2>Personal Information</h2>
+                        <div class="weave-form-group">
+                            <label for="fullname">Full Name</label>
+                            <input type="text" id="fullname" value="John Doe">
+                        </div>
+                        <div class="weave-form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" value="@johndoe">
+                        </div>
+                        <div class="weave-form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" value="john.doe@example.com">
+                        </div>
+                        <div class="weave-form-group">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio">Passionate about technology and community building. Love to share knowledge and learn from others.</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="weave-profile-card">
+                        <h2>Social Connections</h2>
+                        <div class="weave-form-group">
+                            <label for="twitter">Twitter</label>
+                            <input type="text" id="twitter" value="@johndoe">
+                        </div>
+                        <div class="weave-form-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <input type="text" id="linkedin" value="linkedin.com/in/johndoe">
+                        </div>
+                        <div class="weave-form-group">
+                            <label for="website">Website</label>
+                            <input type="text" id="website" value="johndoe.com">
+                        </div>
+                    </div>
+                    
+                    <div class="weave-form-actions">
+                        <button class="weave-btn weave-btn-outline">Cancel</button>
+                        <button class="weave-btn weave-btn-primary">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="weave-footer">
+            <p>© 2023 WeaveSA. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.weave-theme-toggle i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        // Function to toggle translation options
+        function toggleTranslate() {
+            document.getElementById("translateOptions").classList.toggle("show");
+        }
+
+        // Function to change language
+        function changeLanguage(lang) {
+            // Change Google Translate language
+            if (typeof google !== 'undefined' && google.translate && google.translate.TranslateElement) {
+                var selectField = document.querySelector("#google_translate_element select");
+                if (selectField) {
+                    for (var i = 0; i < selectField.options.length; i++) {
+                        if (selectField.options[i].value.indexOf(lang) > -1) {
+                            selectField.selectedIndex = i;
+                            selectField.dispatchEvent(new Event('change'));
+                            break;
+                        }
+                    }
+                }
+            }
+            document.getElementById("translateOptions").classList.remove("show");
+        }
+
+        // Close the translation dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.weave-translate-toggle')) {
+                var dropdowns = document.getElementsByClassName("weave-translate-options");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Function to go back
+        function goBack() {
+            window.history.back();
+        }
+
+        // Google Translate API initialization
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,es,fr,de,zh,ar,ru,ja,pt,it',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+            
+            // Customize the Google Translate dropdown after it loads
+            setTimeout(function() {
+                var iframe = document.querySelector('.goog-te-menu-frame');
+                if (iframe) {
+                    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    var style = document.createElement('style');
+                    style.innerHTML = `
+                        body {
+                            background: ${getComputedStyle(document.body).getPropertyValue('--bg-secondary')} !important;
+                            color: ${getComputedStyle(document.body).getPropertyValue('--text-primary')} !important;
+                        }
+                        .goog-te-menu2-item div, .goog-te-menu2-item:link {
+                            color: ${getComputedStyle(document.body).getPropertyValue('--text-primary')} !important;
+                        }
+                        .goog-te-menu2-item:hover {
+                            background: ${getComputedStyle(document.body).getPropertyValue('--bg-tertiary')} !important;
+                        }
+                    `;
+                    innerDoc.head.appendChild(style);
+                }
+            }, 1000);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // You can add any initialization code here
+        });
+    </script>
+</body>
+</html>

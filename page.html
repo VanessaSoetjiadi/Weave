@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adelaide Uni Toilet Discussion - WeaveSA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            color: #222;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body.dark-mode {
+            background-color: #111;
+            color: #f0f0f0;
+        }
+        
+        .weave-container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .weave-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        
+        .dark-mode .weave-header {
+            background-color: #000;
+            border-bottom: 1px solid #333;
+        }
+        
+        .weave-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        /* Logo styling */
+        .weave-logo-img {
+            height: 40px; /* Adjust based on your logo's dimensions */
+            width: auto;
+        }
+        
+        .weave-back-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .dark-mode .weave-back-button {
+            color: #aaa;
+        }
+        
+        .weave-search-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+        }
+        
+        .weave-theme-toggle, .weave-profile-button {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .weave-theme-toggle, 
+        .dark-mode .weave-profile-button {
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #444;
+        }
+        
+        .weave-translate-button {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .weave-translate-button {
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #444;
+        }
+        
+        .weave-profile-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 101;
+            display: none;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .weave-profile-dropdown {
+            background-color: #222;
+            border: 1px solid #444;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .weave-profile-dropdown.show {
+            display: block;
+        }
+        
+        .weave-dropdown-item {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .weave-dropdown-item {
+            color: #fff;
+            border-bottom: 1px solid #444;
+        }
+        
+        .weave-dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .weave-dropdown-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .dark-mode .weave-dropdown-item:hover {
+            background-color: #333;
+        }
+        
+        .weave-discussion-header {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin: 16px;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .weave-discussion-header {
+            background-color: #000;
+            box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
+        }
+        
+        .weave-discussion-title {
+            font-size: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .weave-discussion-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .dark-mode .weave-discussion-meta {
+            color: #aaa;
+        }
+        
+        .vote-count {
+            color: #444;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .dark-mode .vote-count {
+            color: #ddd;
+        }
+        
+        .weave-discussion-stats {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .dark-mode .weave-discussion-stats {
+            color: #aaa;
+        }
+        
+        .weave-stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .weave-chat-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .weave-chat-container {
+            background-color: #000;
+            box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
+        }
+        
+        .weave-chat-header {
+            padding: 16px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.3s;
+        }
+        
+        .dark-mode .weave-chat-header {
+            border-bottom: 1px solid #333;
+        }
+        
+        .weave-chat-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .weave-sort-options {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .dark-mode .weave-sort-options {
+            color: #aaa;
+        }
+        
+        .weave-sort-select {
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: #f8f8f8;
+            color: #333;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .weave-sort-select {
+            border: 1px solid #444;
+            background-color: #222;
+            color: #fff;
+        }
+        
+        .weave-messages {
+            padding: 16px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        
+        .weave-message {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .weave-message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #444;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: background-color 0.3s;
+        }
+        
+        .dark-mode .weave-message-avatar {
+            background-color: #666;
+        }
+        
+        .weave-message-content {
+            flex-grow: 1;
+        }
+        
+        .weave-message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        
+        .weave-message-user {
+            font-weight: 600;
+        }
+        
+        .weave-message-time {
+            font-size: 12px;
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .dark-mode .weave-message-time {
+            color: #aaa;
+        }
+        
+        .weave-message-text {
+            margin-bottom: 8px;
+        }
+        
+        .weave-message-actions {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .weave-message-action {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .dark-mode .weave-message-action {
+            color: #aaa;
+        }
+        
+        .weave-reply-section {
+            background-color: #fff;
+            padding: 16px;
+            margin: 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .weave-reply-section {
+            background-color: #000;
+            box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
+        }
+        
+        .weave-reply-title {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        
+        .weave-reply-input {
+            margin-bottom: 12px;
+        }
+        
+        .weave-reply-input textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            resize: vertical;
+            min-height: 100px;
+            font-size: 16px;
+            background-color: #f8f8f8;
+            color: #333;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .weave-reply-input textarea {
+            border: 1px solid #444;
+            background-color: #222;
+            color: #fff;
+        }
+        
+        .weave-reply-button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: background-color 0.3s;
+        }
+        
+        .weave-reply-button:hover {
+            background-color: #333;
+        }
+        
+        .dark-mode .weave-reply-button {
+            background-color: #666;
+        }
+        
+        .dark-mode .weave-reply-button:hover {
+            background-color: #555;
+        }
+        
+        .weave-reply-tips {
+            font-size: 14px;
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .dark-mode .weave-reply-tips {
+            color: #aaa;
+        }
+        
+        .weave-footer {
+            text-align: center;
+            padding: 20px;
+            color: #555;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .dark-mode .weave-footer {
+            color: #aaa;
+        }
+        
+        .user-message {
+            flex-direction: row-reverse;
+        }
+        
+        .user-message .weave-message-avatar {
+            background-color: #777;
+        }
+        
+        .user-message .weave-message-content {
+            text-align: right;
+        }
+        
+        .user-message .weave-message-header {
+            flex-direction: row-reverse;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            color: #555;
+            font-style: italic;
+            transition: color 0.3s;
+        }
+        
+        .dark-mode .typing-indicator {
+            color: #aaa;
+        }
+        
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #555;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+            transition: background-color 0.3s;
+        }
+        
+        .dark-mode .typing-dot {
+            background-color: #aaa;
+        }
+        
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .translate-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            width: 300px;
+            display: none;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .translate-popup {
+            background-color: #222;
+            border: 1px solid #444;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .translate-popup.show {
+            display: block;
+        }
+        
+        .translate-popup h3 {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .translate-popup select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            color: #333;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .translate-popup select {
+            border: 1px solid #444;
+            background-color: #333;
+            color: #fff;
+        }
+        
+        .translate-popup-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .translate-popup-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .translate-cancel {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .dark-mode .translate-cancel {
+            background-color: #444;
+            color: #fff;
+        }
+        
+        .translate-confirm {
+            background-color: #444;
+            color: #fff;
+        }
+        
+        .dark-mode .translate-confirm {
+            background-color: #666;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+        
+        .overlay.show {
+            display: block;
+        }
+        
+        #google_translate_element {
+            display: inline-block;
+        }
+        
+        .goog-te-gadget {
+            font-family: inherit !important;
+        }
+        
+        .goog-te-gadget .goog-te-combo {
+            margin: 0;
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: #f8f8f8;
+            color: #333;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .goog-te-gadget .goog-te-combo {
+            border: 1px solid #444;
+            background-color: #222;
+            color: #fff;
+        }
+        
+        .goog-te-banner-frame {
+            display: none !important;
+        }
+        
+        body > .goog-te-menu-frame {
+            z-index: 1000 !important;
+        }
+        
+        /* Mobile translate dropdown */
+        .weave-mobile-translate {
+            display: none;
+            position: relative;
+        }
+        
+        .weave-translate-dropdown {
+            position: relative;
+        }
+
+        .weave-translate-options {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background: #fff;
+            min-width: 160px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            z-index: 100;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .weave-translate-options {
+            background: #222;
+            border: 1px solid #444;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .weave-translate-options a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+        
+        .dark-mode .weave-translate-options a {
+            color: #fff;
+        }
+
+        .weave-translate-options a:hover {
+            background: #f5f5f5;
+        }
+        
+        .dark-mode .weave-translate-options a:hover {
+            background: #333;
+        }
+
+        .show {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .weave-discussion-meta, .weave-discussion-stats {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .weave-chat-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .weave-profile-dropdown {
+                right: -50px;
+            }
+            
+            #google_translate_element {
+                display: none;
+            }
+            
+            .weave-mobile-translate {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body class="weave-discussion">
+    <div class="weave-container">
+        <header class="weave-header">
+            <div class="weave-logo-container">
+                <!-- Replace the src with your actual logo file path -->
+                <a href="index.html">
+                    <img src="Weave logo.png" alt="WeaveSA" class="weave-logo-img">
+                </a>
+                <div class="weave-back-button" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </div>
+            </div>
+            <div class="weave-search-container">
+                <div id="google_translate_element"></div>
+                <div class="weave-mobile-translate">
+                    <div class="weave-translate-dropdown">
+                        <div class="weave-translate-button" onclick="toggleTranslate()">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div id="translateOptions" class="weave-translate-options">
+                            <a href="#" onclick="changeLanguage('en')">English</a>
+                            <a href="#" onclick="changeLanguage('es')">Español</a>
+                            <a href="#" onclick="changeLanguage('fr')">Français</a>
+                            <a href="#" onclick="changeLanguage('de')">Deutsch</a>
+                            <a href="#" onclick="changeLanguage('zh')">中文</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="weave-theme-toggle" onclick="toggleDarkMode()">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="weave-profile-button" onclick="toggleProfileDropdown()">
+                    <i class="fas fa-user"></i>
+                </div>
+                
+                <div class="weave-profile-dropdown" id="profileDropdown">
+                    <a href="profile.html" class="weave-dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="profile.html?edit=true" class="weave-dropdown-item">
+                        <i class="fas fa-edit"></i>
+                        <span>Edit Profile</span>
+                    </a>
+                    <a href="#" class="weave-dropdown-item" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Log Out</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+        
+        <div class="weave-discussion-header">
+            <h1 class="weave-discussion-title">
+                <i class="fas fa-toilet"></i>
+                🚽 The toilet in Uni Adelaide sucks
+            </h1>
+            <div class="weave-discussion-meta">
+                <span>Posted by: Student123</span>
+                <span>243 comments</span>
+                <span class="vote-count">1.2k votes</span>
+            </div>
+            <p>Students complain about poor facilities management and hygiene issues in University of Adelaide bathrooms.</p>
+            <div class="weave-discussion-stats">
+                <div class="weave-stat">
+                    <i class="far fa-eye"></i>
+                    <span>5.4k views</span>
+                </div>
+                <div class="weave-stat">
+                    <i class="far fa-clock"></i>
+                    <span>Updated 2 hours ago</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="weave-chat-container">
+            <div class="weave-chat-header">
+                <h2 class="weave-chat-title">Join the conversation</h2>
+                <div class="weave-sort-options">
+                    <span>Sort by:</span>
+                    <select class="weave-sort-select" id="sortSelect">
+                        <option>New (Default)</option>
+                        <option>Top</option>
+                        <option>Old</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="weave-messages" id="messagesContainer">
+                <div class="weave-message">
+                    <div class="weave-message-avatar">J</div>
+                    <div class="weave-message-content">
+                        <div class="weave-message-header">
+                            <span class="weave-message-user">Jessica</span>
+                            <span class="weave-message-time">2 hours ago</span>
+                        </div>
+                        <p class="weave-message-text">I was in the Hughes building yesterday and the condition of the toilets was absolutely disgusting. Overflowing bins and no toilet paper in most stalls. How can a prestigious university have such poor facilities?</p>
+                        <div class="weave-message-actions">
+                            <div class="weave-message-action">
+                                <i class="far fa-thumbs-up"></i>
+                                <span>124</span>
+                            </div>
+                            <div class="weave-message-action">
+                                <i class="far fa-comment"></i>
+                                <span>Reply</span>
+                            </div>
+                            <div class="weave-message-action">
+                                <i class="far fa-share-square"></i>
+                                <span>Share</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="weave-message">
+                    <div class="weave-message-avatar">T</div>
+                    <div class="weave-message-content">
+                        <div class="weave-message-header">
+                            <span class="weave-message-user">Tom_UniAdel</span>
+                            <span class="weave-message-time">1 hour ago</span>
+                        </div>
+                        <p class="weave-message-text">Completely agree! I've been complaining about this for months. The worst part is that it's not just one building - it's all across campus. The science building bathrooms are particularly bad in the afternoons.</p>
+                        <div class="weave-message-actions">
+                            <div class="weave-message-action">
+                                <i class="far fa-thumbs-up"></i>
+                                <span>98</span>
+                            </div>
+                            <div class="weave-message-action">
+                                <i class="far fa-comment"></i>
+                                <span>Reply</span>
+                            </div>
+                            <div class="weave-message-action">
+                                <i class="far fa-share-square"></i>
+                                <span>Share</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="weave-message user-message">
+                    <div class="weave-message-avatar">Y</div>
+                    <div class="weave-message-content">
+                        <div class="weave-message-header">
+                            <span class="weave-message-user">You</span>
+                            <span class="weave-message-time">Just now</span>
+                        </div>
+                        <p class="weave-message-text">I totally agree with all of you! I've had the same experience in the Napier building. It's really disappointing for a university of this caliber.</p>
+                        <div class="weave-message-actions">
+                            <div class="weave-message-action">
+                                <i class="far fa-thumbs-up"></i>
+                                <span>0</span>
+                            </div>
+                            <div class="weave-message-action">
+                                <i class="far fa-comment"></i>
+                                <span>Reply</span>
+                            </div>
+                            <div class="weave-message-action">
+                                <i class="far fa-share-square"></i>
+                                <span>Share</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="typing-indicator">
+                    <span>SarahM is typing</span>
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="weave-reply-section">
+            <h2 class="weave-reply-title">Add your comment</h2>
+            <div class="weave-reply-input">
+                <textarea id="commentText" placeholder="What are your thoughts?"></textarea>
+            </div>
+            <button class="weave-reply-button" id="postComment">Post Comment</button>
+            <p class="weave-reply-tips">Remember to be respectful in your comments. We're all in this together!</p>
+        </div>
+        
+        <footer class="weave-footer">
+            <p>© 2023 WeaveSA. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Google Translate API initialization
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,es,fr,de,zh,ja,ar,ru,pt,hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+            
+            // Add custom styles to Google Translate elements
+            const addCustomStyles = () => {
+                const style = document.createElement('style');
+                style.textContent = `
+                    .goog-te-gadget {
+                        font-family: inherit !important;
+                        color: inherit !important;
+                    }
+                    .goog-te-gadget select {
+                        background: #f8f8f8;
+                        color: #333;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        padding: 6px;
+                    }
+                    .dark-mode .goog-te-gadget select {
+                        background: #222;
+                        color: #fff;
+                        border: 1px solid #444;
+                    }
+                    .goog-te-menu-value span {
+                        color: inherit !important;
+                    }
+                    .goog-te-menu-value:hover {
+                        text-decoration: none !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            };
+            
+            // Wait for Google Translate to load and then apply styles
+            setTimeout(addCustomStyles, 1000);
+        }
+        
+        // Function to toggle translation options
+        function toggleTranslate() {
+            document.getElementById("translateOptions").classList.toggle("show");
+        }
+
+        // Function to change language
+        function changeLanguage(lang) {
+            // Change Google Translate language
+            if (typeof google !== 'undefined' && google.translate && google.translate.TranslateElement) {
+                var selectField = document.querySelector("#google_translate_element select");
+                if (selectField) {
+                    for (var i = 0; i < selectField.options.length; i++) {
+                        if (selectField.options[i].value.indexOf(lang) > -1) {
+                            selectField.selectedIndex = i;
+                            selectField.dispatchEvent(new Event('change'));
+                            break;
+                        }
+                    }
+                }
+            }
+            document.getElementById("translateOptions").classList.remove("show");
+        }
+
+        // Close the translation dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.weave-translate-button')) {
+                var dropdowns = document.getElementsByClassName("weave-translate-options");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+        
+        // Toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.weave-theme-toggle i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                // Update Google Translate styles for dark mode
+                updateTranslateStyles(true);
+                // Save preference
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                // Update Google Translate styles for light mode
+                updateTranslateStyles(false);
+                // Save preference
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        // Update Google Translate styles based on theme
+        function updateTranslateStyles(isDark) {
+            const select = document.querySelector('.goog-te-combo');
+            if (select) {
+                if (isDark) {
+                    select.style.backgroundColor = '#222';
+                    select.style.color = '#fff';
+                    select.style.borderColor = '#444';
+                } else {
+                    select.style.backgroundColor = '#f8f8f8';
+                    select.style.color = '#333';
+                    select.style.borderColor = '#ddd';
+                }
+            }
+        }
+        
+        // Go back function
+        function goBack() {
+            window.history.back();
+        }
+        
+        // Toggle profile dropdown
+        function toggleProfileDropdown() {
+            document.getElementById('profileDropdown').classList.toggle('show');
+        }
+        
+        // Close dropdown when clicking elsewhere
+        document.addEventListener('click', function(event) {
+            const profileDropdown = document.getElementById('profileDropdown');
+            const profileButton = document.querySelector('.weave-profile-button');
+            const translateButton = document.querySelector('.weave-translate-button');
+            const translateOptions = document.getElementById('translateOptions');
+            
+            if (!profileButton.contains(event.target) && !profileDropdown.contains(event.target)) {
+                profileDropdown.classList.remove('show');
+            }
+            
+            if (!translateButton.contains(event.target) && !translateOptions.contains(event.target)) {
+                translateOptions.classList.remove('show');
+            }
+        });
+        
+        // Logout function
+        function logout() {
+            alert('Logging out...');
+            // In a real application, this would redirect to logout endpoint
+        }
+        
+        // Simulate receiving a new message after a delay
+        setTimeout(() => {
+            // Remove typing indicator
+            const typingIndicator = document.querySelector('.typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+            
+            // Add new message
+            const messagesContainer = document.getElementById('messagesContainer');
+            const newMessage = document.createElement('div');
+            newMessage.className = 'weave-message';
+            newMessage.innerHTML = `
+                <div class="weave-message-avatar">S</div>
+                <div class="weave-message-content">
+                    <div class="weave-message-header">
+                        <span class="weave-message-user">SarahM</span>
+                        <span class="weave-message-time">Just now</span>
+                    </div>
+                    <p class="weave-message-text">Exactly! I emailed facilities management last week about the bathrooms in the Napier building. They said they would "look into it" but nothing has changed. We need to organize and make our voices heard!</p>
+                    <div class="weave-message-actions">
+                        <div class="weave-message-action">
+                            <i class="far fa-thumbs-up"></i>
+                            <span>0</span>
+                        </div>
+                        <div class="weave-message-action">
+                            <i class="far fa-comment"></i>
+                            <span>Reply</span>
+                        </div>
+                        <div class="weave-message-action">
+                            <i class="far fa-share-square"></i>
+                            <span>Share</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(newMessage);
+            
+            // Scroll to the bottom to show the new message
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }, 3000);
+        
+        // Handle posting a new comment
+        document.getElementById('postComment').addEventListener('click', function() {
+            const commentText = document.getElementById('commentText').value.trim();
+            if (commentText) {
+                const messagesContainer = document.getElementById('messagesContainer');
+                const newMessage = document.createElement('div');
+                newMessage.className = 'weave-message user-message';
+                newMessage.innerHTML = `
+                    <div class="weave-message-avatar">Y</div>
+                    <div class="weave-message-content">
+                        <div class="weave-message-header">
+                            <span class="weave-message-user">You</span>
+                            <span class="weave-message-time">Just now</span>
+                        </div>
+                        <p class="weave-message-text">${commentText}</p>
+                        <div class="weave-message-actions">
+                            <div class="weave-message-action">
+                                <i class="far fa-thumbs-up"></i>
+                                <span>0</span>
+                            </div>
+                            <div class="weave-message-action">
+                                <i class="far fa-comment"></i>
+                                <span>Reply</span>
+                            </div>
+                            <div class="weave-message-action">
+                                <i class="far fa-share-square"></i>
+                                <span>Share</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                messagesContainer.appendChild(newMessage);
+                
+                // Clear the textarea
+                document.getElementById('commentText').value = '';
+                
+                // Scroll to the bottom to show the new message
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Simulate a response after a delay
+                simulateResponse();
+            }
+        });
+        
+        // Simulate a response from another user
+        function simulateResponse() {
+            // Show typing indicator
+            const messagesContainer = document.getElementById('messagesContainer');
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'typing-indicator';
+            typingIndicator.innerHTML = `
+                <span>AdelaideGrad is typing</span>
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            messagesContainer.appendChild(typingIndicator);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Remove typing indicator and add response after delay
+            setTimeout(() => {
+                typingIndicator.remove();
+                
+                const responses = [
+                    "It's been like this for years! When I was a student 5 years ago, we had the same issues.",
+                    "The university spends millions on new buildings but can't maintain basic hygiene facilities. Disgraceful!",
+                    "Have you tried the bathrooms in the Hub? They're usually better maintained than the ones in academic buildings.",
+                    "We should start a petition to get the university to address this issue properly."
+                ];
+                
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                
+                const newMessage = document.createElement('div');
+                newMessage.className = 'weave-message';
+                newMessage.innerHTML = `
+                    <div class="weave-message-avatar">A</div>
+                    <div class="weave-message-content">
+                        <div class="weave-message-header">
+                            <span class="weave-message-user">AdelaideGrad</span>
+                            <span class="weave-message-time">Just now</span>
+                        </div>
+                        <p class="weave-message-text">${randomResponse}</p>
+                        <div class="weave-message-actions">
+                            <div class="weave-message-action">
+                                <i class="far fa-thumbs-up"></i>
+                                <span>0</span>
+                            </div>
+                            <div class="weave-message-action">
+                                <i class="far fa-comment"></i>
+                                <span>Reply</span>
+                            </div>
+                            <div class="weave-message-action">
+                                <i class="far fa-share-square"></i>
+                                <span>Share</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                messagesContainer.appendChild(newMessage);
+                
+                // Scroll to the bottom to show the new message
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 2500);
+        }
+        
+        // Initialize theme based on user preference or time of day
+        function initializeTheme() {
+            // Check for saved theme preference or prefer a light theme
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Default to light theme unless explicitly saved as dark
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.body.classList.add('dark-mode');
+                const icon = document.querySelector('.weave-theme-toggle i');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+        
+        // Initialize when page loads
+        window.onload = function() {
+            initializeTheme();
+            
+            // Apply initial styles to Google Translate elements
+            setTimeout(() => {
+                updateTranslateStyles(document.body.classList.contains('dark-mode'));
+            }, 1500);
+        };
+    </script>
+</body>
+</html>
