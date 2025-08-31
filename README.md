@@ -1,5 +1,5 @@
 # Weave
-To access the prototype homepage of the prototype website, please copy past the following page:
+To access the homepage of the prototype website, please copy past the following page:
 
 ````
 https://vanessasoetjiadi.github.io/weave/index
