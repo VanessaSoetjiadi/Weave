@@ -4,7 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Development Plans for Adelaide Central Market - WeaveSA</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Primary Font Awesome CDN with fallback -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="this.onerror=null;this.href='fontawesome-fallback.css';">
+    
+    <!-- Local fallback for Font Awesome -->
+    <script>
+      // Check if Font Awesome loaded successfully
+      document.addEventListener('DOMContentLoaded', function() {
+        // Test if Font Awesome loaded correctly
+        setTimeout(function() {
+          const testIcon = document.createElement('i');
+          testIcon.className = 'fa fa-test';
+          testIcon.style.position = 'absolute';
+          testIcon.style.left = '-9999px';
+          document.body.appendChild(testIcon);
+          
+          const computedStyle = window.getComputedStyle(testIcon, ':before');
+          const contentValue = computedStyle.content;
+          
+          // If Font Awesome didn't load, use local fallback
+          if (contentValue === 'normal' || contentValue === 'none' || !contentValue) {
+            console.log('Font Awesome not loaded, using fallback');
+            const fallbackLink = document.createElement('link');
+            fallbackLink.rel = 'stylesheet';
+            fallbackLink.href = 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css';
+            document.head.appendChild(fallbackLink);
+          }
+          
+          document.body.removeChild(testIcon);
+        }, 1000);
+      });
+    </script>
+    
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <style>
         /* Namespaced styles to prevent conflicts with main page */
@@ -589,6 +621,11 @@
             font-size: inherit;
         }
 
+        /* Text fallback for icons */
+        .icon-fallback {
+            display: none;
+        }
+
         /* Responsive Styles */
         @media (max-width: 768px) {
             .weave-discussion .weave-header {
@@ -649,7 +686,8 @@
                     <img src="Weave logo.png" alt="WeaveSA" class="weave-logo-img">
                 </a>
                 <div class="weave-back-button" onclick="goBack()">
-                    <i class="fas fa-arrow-left"></i>
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span class="icon-fallback">←</span>
                     <span>Back</span>
                 </div>
             </div>
@@ -659,6 +697,7 @@
                     <div class="weave-translate-dropdown">
                         <div class="weave-translate-toggle" onclick="toggleTranslate()">
                             <i class="fas fa-language"></i>
+                            <span class="icon-fallback">🌐</span>
                         </div>
                         <div id="translateOptions" class="weave-translate-options">
                             <a href="#" onclick="changeLanguage('en')">English</a>
@@ -671,9 +710,11 @@
                 </div>
                 <div class="weave-theme-toggle" onclick="toggleDarkMode()">
                     <i class="fas fa-moon"></i>
+                    <span class="icon-fallback">🌙</span>
                 </div>
                 <a href="profile.html" class="weave-profile-button">
                     <i class="fas fa-user"></i>
+                    <span class="icon-fallback">👤</span>
                 </a>
             </div>
         </header>
@@ -683,9 +724,9 @@
                 <div class="weave-news-hero-content">
                     <h1>New Development Plans for Adelaide Central Market</h1>
                     <div class="weave-news-meta">
-                        <span><i class="far fa-user"></i> By Adelaide News</span>
-                        <span><i class="far fa-clock"></i> Posted 2 days ago</span>
-                        <span><i class="far fa-eye"></i> 3.2k views</span>
+                        <span><i class="far fa-user"></i>By Adelaide News</span>
+                        <span><i class="far fa-clock"></i>Posted 2 days ago</span>
+                        <span><i class="far fa-eye"></i>3.2k views</span>
                     </div>
                 </div>
             </div>
@@ -710,13 +751,13 @@
             
             <div class="weave-news-actions">
                 <button class="weave-news-action-button" id="likeButton">
-                    <i class="far fa-thumbs-up"></i> Like (243)
+                    <i class="far fa-thumbs-up"></i><span class="icon-fallback">👍</span> Like (243)
                 </button>
                 <button class="weave-news-action-button" id="shareButton">
-                    <i class="far fa-share-square"></i> Share
+                    <i class="far fa-share-square"></i><span class="icon-fallback">↗️</span> Share
                 </button>
                 <button class="weave-news-action-button" id="saveButton">
-                    <i class="far fa-bookmark"></i> Save
+                    <i class="far fa-bookmark"></i><span class="icon-fallback">🔖</span> Save
                 </button>
             </div>
             
@@ -732,8 +773,8 @@
                         </div>
                         <p class="weave-comment-text">Finally! The market desperately needs better accessibility. Hopefully they'll add more elevators and ramps for wheelchair users.</p>
                         <div class="weave-comment-actions">
-                            <button class="weave-comment-action" onclick="likeComment(this)">Like (15)</button>
-                            <button class="weave-comment-action" onclick="replyToComment()">Reply</button>
+                            <button class="weave-comment-action" onclick="likeComment(this)"><i class="far fa-thumbs-up"></i><span class="icon-fallback">👍</span> Like (15)</button>
+                            <button class="weave-comment-action" onclick="replyToComment()"><i class="far fa-reply"></i><span class="icon-fallback">↩️</span> Reply</button>
                         </div>
                     </div>
                 </div>
@@ -747,8 +788,8 @@
                         </div>
                         <p class="weave-comment-text">As a longtime trader, I'm worried about the disruption during construction. Many small businesses might not survive three years of construction work.</p>
                         <div class="weave-comment-actions">
-                            <button class="weave-comment-action" onclick="likeComment(this)">Like (23)</button>
-                            <button class="weave-comment-action" onclick="replyToComment()">Reply</button>
+                            <button class="weave-comment-action" onclick="likeComment(this)"><i class="far fa-thumbs-up"></i><span class="icon-fallback">👍</span> Like (23)</button>
+                            <button class="weave-comment-action" onclick="replyToComment()"><i class="far fa-reply"></i><span class="icon-fallback">↩️</span> Reply</button>
                         </div>
                     </div>
                 </div>
@@ -767,25 +808,33 @@
     </div>
 
     <script>
-        // Dark Mode Toggle
+        // Dark Mode Toggle - Fixed implementation
         function toggleDarkMode() {
-            const discussionElement = document.querySelector('.weave-discussion');
-            discussionElement.classList.toggle('weave-dark-mode');
+            const body = document.querySelector('.weave-discussion');
+            body.classList.toggle('weave-dark-mode');
             const icon = document.querySelector('.weave-theme-toggle i');
-            if (discussionElement.classList.contains('weave-dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
+            const fallback = document.querySelector('.weave-theme-toggle .icon-fallback');
+            
+            if (body.classList.contains('weave-dark-mode')) {
+                if (icon) icon.classList.replace('fa-moon', 'fa-sun');
+                if (fallback) fallback.textContent = '☀️';
                 localStorage.setItem('weaveDarkMode', 'enabled');
             } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
+                if (icon) icon.classList.replace('fa-sun', 'fa-moon');
+                if (fallback) fallback.textContent = '🌙';
                 localStorage.setItem('weaveDarkMode', 'disabled');
             }
         }
 
-        // Back button functionality
+        // Back button functionality - Fixed implementation
         function goBack() {
-            window.history.back();
+            // Try to go back in browser history
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                // If no history, redirect to home page
+                window.location.href = 'index.html';
+            }
         }
 
         // Function to toggle translation options
@@ -865,7 +914,7 @@
         // Like functionality for comments
         function likeComment(button) {
             const count = parseInt(button.textContent.match(/\d+/)[0] || 0);
-            button.textContent = `Like (${count + 1})`;
+            button.textContent = button.textContent.replace(/\d+/, count + 1);
             button.style.color = '#ff4444';
         }
 
@@ -879,7 +928,7 @@
         // News action buttons functionality
         document.getElementById('likeButton').addEventListener('click', function() {
             const count = parseInt(this.textContent.match(/\d+/)[0]);
-            this.innerHTML = `<i class="far fa-thumbs-up"></i> Like (${count + 1})`;
+            this.innerHTML = this.innerHTML.replace(/\d+/, count + 1);
         });
 
         document.getElementById('shareButton').addEventListener('click', function() {
@@ -887,7 +936,11 @@
         });
 
         document.getElementById('saveButton').addEventListener('click', function() {
-            this.innerHTML = `<i class="fas fa-bookmark"></i> Saved`;
+            const icon = this.querySelector('i');
+            const fallback = this.querySelector('.icon-fallback');
+            if (icon) icon.classList.replace('fa-bookmark', 'fa-bookmark');
+            if (fallback) fallback.textContent = '🔖';
+            this.innerHTML = this.innerHTML.replace('Save', 'Saved');
         });
 
         // Comment functionality
@@ -906,8 +959,8 @@
                         </div>
                         <p class="weave-comment-text">${commentText.value}</p>
                         <div class="weave-comment-actions">
-                            <button class="weave-comment-action" onclick="likeComment(this)">Like (0)</button>
-                            <button class="weave-comment-action" onclick="replyToComment()">Reply</button>
+                            <button class="weave-comment-action" onclick="likeComment(this)"><i class="far fa-thumbs-up"></i><span class="icon-fallback">👍</span> Like (0)</button>
+                            <button class="weave-comment-action" onclick="replyToComment()"><i class="far fa-reply"></i><span class="icon-fallback">↩️</span> Reply</button>
                         </div>
                     </div>
                 `;
@@ -931,18 +984,52 @@
             }
         });
 
+        // Check if Font Awesome loaded and show fallbacks if not
+        function checkFontAwesome() {
+            // Test if Font Awesome loaded by checking if an icon element has the right font
+            const testIcon = document.createElement('i');
+            testIcon.className = 'fa fa-font-awesome';
+            testIcon.style.position = 'absolute';
+            testIcon.style.left = '-9999px';
+            document.body.appendChild(testIcon);
+            
+            const computedStyle = window.getComputedStyle(testIcon, ':before');
+            const contentValue = computedStyle.content;
+            
+            // If Font Awesome didn't load properly, show fallback text
+            if (contentValue === 'normal' || contentValue === 'none' || !contentValue) {
+                document.querySelectorAll('.icon-fallback').forEach(el => {
+                    el.style.display = 'inline';
+                });
+                
+                // Also hide the Font Awesome icons
+                document.querySelectorAll('.fa').forEach(el => {
+                    el.style.display = 'none';
+                });
+            }
+            
+            document.body.removeChild(testIcon);
+        }
+
         // Initialize when page loads
         window.onload = function() {
             // Check for saved dark mode preference
             if (localStorage.getItem('weaveDarkMode') === 'enabled') {
-                const discussionElement = document.querySelector('.weave-discussion');
-                discussionElement.classList.add('weave-dark-mode');
+                const body = document.querySelector('.weave-discussion');
+                body.classList.add('weave-dark-mode');
                 const icon = document.querySelector('.weave-theme-toggle i');
+                const fallback = document.querySelector('.weave-theme-toggle .icon-fallback');
                 if (icon) {
                     icon.classList.remove('fa-moon');
                     icon.classList.add('fa-sun');
                 }
+                if (fallback) {
+                    fallback.textContent = '☀️';
+                }
             }
+            
+            // Check if Font Awesome loaded correctly
+            setTimeout(checkFontAwesome, 1000);
             
             // Load Google Translate API if not already loaded
             if (!document.querySelector('script[src*="translate.google.com"]')) {

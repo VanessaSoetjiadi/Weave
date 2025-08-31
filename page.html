@@ -29,8 +29,9 @@
         }
         
         .weave-container {
-            max-width: 100%;
+            max-width: 900px; /* Changed from 100% to fixed width */
             margin: 0 auto;
+            padding: 0 16px; /* Added padding for mobile */
         }
         
         .weave-header {
@@ -44,6 +45,8 @@
             top: 0;
             z-index: 100;
             transition: background-color 0.3s, border-color 0.3s;
+            border-radius: 8px; /* Added rounded corners */
+            margin-top: 16px; /* Added margin */
         }
         
         .dark-mode .weave-header {
@@ -183,7 +186,7 @@
             margin-bottom: 16px;
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            margin: 16px;
+            margin: 16px 0; /* Changed from 16px to remove horizontal margin */
             transition: all 0.3s;
         }
         
@@ -246,7 +249,7 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            margin: 16px;
+            margin: 16px 0; /* Changed from 16px to remove horizontal margin */
             overflow: hidden;
             transition: all 0.3s;
         }
@@ -382,7 +385,7 @@
         .weave-reply-section {
             background-color: #fff;
             padding: 16px;
-            margin: 16px;
+            margin: 16px 0; /* Changed from 16px to remove horizontal margin */
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
@@ -461,6 +464,7 @@
             color: #555;
             font-size: 14px;
             transition: color 0.3s;
+            margin-top: 16px;
         }
         
         .dark-mode .weave-footer {

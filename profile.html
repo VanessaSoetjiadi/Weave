@@ -77,6 +77,13 @@
             font-weight: bold;
             color: var(--text-primary);
             margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .weave-logo-img {
+            height: 40px; /* Adjust based on your logo's proportions */
+            width: auto;
         }
 
         .weave-back-button {
@@ -84,6 +91,7 @@
             align-items: center;
             cursor: pointer;
             color: var(--text-primary);
+            margin-left: 20px;
         }
 
         .weave-back-button i {
@@ -349,6 +357,10 @@
                 margin-right: 0;
                 margin-bottom: 15px;
             }
+            
+            .weave-logo-img {
+                height: 32px;
+            }
         }
         
         /* Mobile translate dropdown */
@@ -396,7 +408,10 @@
     <div class="weave-container">
         <header class="weave-header">
             <div class="weave-logo-container">
-                <div class="weave-logo">WeaveSA</div>
+                <div class="weave-logo">
+                    <!-- Replace the src with your own logo image -->
+                    <img src="Weave logo.png" alt="WeaveSA Logo" class="weave-logo-img">
+                </div>
                 <div class="weave-back-button" onclick="goBack()">
                     <i class="fas fa-arrow-left"></i>
                     <span>Back</span>
