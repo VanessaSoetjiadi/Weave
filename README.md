@@ -5,7 +5,8 @@ To access the prototype homepage of the prototype website, please copy past the 
 https://vanessasoetjiadi.github.io/weave/index
 ````
 
-# Project Description
+&nbsp;
+## Project Description
 
 Weave is a multilingual community forum application designed to strengthen civic participation by breaking down language barriers, fostering inclusive dialogue, and transforming online conversations into offline community action.
 
